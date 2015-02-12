@@ -21,8 +21,8 @@
   gather_facts: no
 
   vars:
-    dbuser: wercker
-    dbpassword: mysupersecretpassword
+    dbuser: postgres
+    dbpassword: wercker
 
   tasks:
   - name: ensure user has access to database
