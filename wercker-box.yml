@@ -42,7 +42,7 @@ script: |
         echo 'export PATH="$PATH:$GOPATH/bin"' | sudo tee -a /etc/profile
         sudo su - postgres 
         psql -t template1  -c "alter user postgres with password 'wercker'"
-        exit
+        sudo su - ubuntu
         echo "PGPASSWORD=wercker" | sudo tee -a /etc/profile
 
 box-detect:
