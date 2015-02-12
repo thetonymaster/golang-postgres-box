@@ -1,6 +1,6 @@
 name: golang-postgresql
 version: 0.0.2
-inherits: wercker/ubuntu12.04-chef10.18.2@0.0.8
+inherits: wercker/ubuntu12.04-webessentials@0.0.4
 type: main
 platform: ubuntu@12.04
 description: A box for development with postgres and Go 1.4
@@ -20,12 +20,13 @@ env:
 
 script: |
         # Setup dev enviroment
-
+        sudo apt-get update
+        sudo apt-get install python-software-properties
+        sudo apt-get install software-properties-common
         echo "deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main" | sudo tee -a /etc/apt/sources.list.d/pgdg.list
         wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
-        sudo apt-add-repository ppa:ansible/ansible
+        sudo add-apt-repository ppa:ansible/ansible
         sudo apt-get update
-        sudo apt-get install software-properties-common
         sudo apt-get install ansible
         
         wget https://storage.googleapis.com/golang/go1.4.1.linux-amd64.tar.gz
