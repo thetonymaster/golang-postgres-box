@@ -2,11 +2,12 @@ name: golang-postgresql
 version: 0.0.1
 type: main
 platform: ubuntu@12.04
+description: A box for development with postgres anf Go 1.4
 keywords:
         - golang
         - go
         - postgresql
- packages:
+packages:
         - golang@1.4
         - git
         - mercurial
