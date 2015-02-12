@@ -23,7 +23,7 @@ script: |
 
         echo "deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main" | sudo tee -a /etc/apt/sources.list.d/pgdg.list
         wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
-        sudo apt-add-repository ppa:ansible/ansible
+        sudo add-apt-repository ppa:ansible/ansible
         sudo apt-get update
         sudo apt-get install software-properties-common
         sudo apt-get install ansible
