@@ -41,7 +41,7 @@ script: |
         export PATH="$PATH:$GOPATH/bin"
         echo 'export PATH="$PATH:$GOPATH/bin"' | sudo tee -a /etc/profile
         sudo su - postgres 
-        psql - t template1  -c "alter user postgres with password 'wercker'"
+        psql -t template1  -c "alter user postgres with password 'wercker'"
         exit
         echo "PGPASSWORD=wercker" | sudo tee -a /etc/profile
 
