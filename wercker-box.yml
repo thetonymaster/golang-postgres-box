@@ -1,0 +1,34 @@
+name: golang-postgresql
+version: 0.0.1
+type: main
+platform: ubuntu@12.04
+keywords:
+        - golang
+        - go
+        - postgresql
+ packages:
+        - golang@1.4
+        - git
+        - mercurial
+        - bzr
+        - postgresql
+script: |
+        # Setup dev enviroment
+        sudo apt-get update
+        sudo apt-get install git
+        sudo apt-get install mercurial
+        sudo apt-get install bzr
+        sudo apt-get install postgresql-9.4
+        wget https://storage.googleapis.com/golang/go1.4.1.linux-amd64.tar.gz
+        sudo tar -C /usr/local -xzf go1.4.1.linux-amd64.tar.gz
+        echo "export PATH:$PATH:/usr/local/go/bin" | sudo tee -a /etc/profile
+        rm go1.4.1.linux-amd64.tar.gz
+
+        #Set GOPATH
+        export GOPATH=$HOME/go
+        echo "GOPATH=$HOME/go" | sudo tee -a /etc/profile
+
+        # Add GOBIN to Path
+        export PATH="$PATH:$GOPATH/bin"
+        echo 'export PATH="$PATH:$GOPATH/bin"' | sudo tee -a /etc/profile
+
