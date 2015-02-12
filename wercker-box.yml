@@ -29,7 +29,7 @@ script: |
         echo "GOPATH=$HOME/go" | sudo tee -a /etc/profile
 
         # Add GOBIN to Path
-        export PATH="$PATH:$GOPATH/bin
+        export PATH="$PATH:$GOPATH/bin"
         echo 'export PATH="$PATH:$GOPATH/bin"' | sudo tee -a /etc/profile
 
 box-detect:
