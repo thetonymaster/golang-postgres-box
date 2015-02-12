@@ -14,6 +14,10 @@ packages:
         - mercurial
         - bzr
         - postgresql
+env:
+  WERCKER_POSTGRESQL_PASSWORD: wercker
+  PGPASSWORD: wercker
+
 script: |
         # Setup dev enviroment
 
@@ -36,6 +40,7 @@ script: |
         # Add GOBIN to Path
         export PATH="$PATH:$GOPATH/bin"
         echo 'export PATH="$PATH:$GOPATH/bin"' | sudo tee -a /etc/profile
+        echo "CREATE DATABASE werckerdb1;" | psql -U postgres -h 127.0.0.1
 
 box-detect:
   priority : 900
