@@ -40,8 +40,8 @@ script: |
         # Add GOBIN to Path
         export PATH="$PATH:$GOPATH/bin"
         echo 'export PATH="$PATH:$GOPATH/bin"' | sudo tee -a /etc/profile
-        export PGPASSWORD=wercker
-        echo "CREATE DATABASE werckerdb1;" | psql -U postgres -h 127.0.0.1
+        sudo su - postgres | psql template1 | echo "alter user postgres with password 'wercker'" | logout
+        echo "PGPASSWORD=wercker" | sudo tee -a /etc/profile
 
 box-detect:
   priority : 900
