@@ -40,9 +40,7 @@ script: |
         # Add GOBIN to Path
         export PATH="$PATH:$GOPATH/bin"
         echo 'export PATH="$PATH:$GOPATH/bin"' | sudo tee -a /etc/profile
-        sudo su - postgres 
-        psql -t template1  -c "alter user postgres with password 'wercker'"
-        sudo su - ubuntu
+         sudo -H -u postgres  bash -c "psql -t template1 -c \"alter user postgres with password 'wercker'\""
         echo "PGPASSWORD=wercker" | sudo tee -a /etc/profile
 
 box-detect:
