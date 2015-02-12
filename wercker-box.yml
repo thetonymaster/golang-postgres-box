@@ -1,6 +1,6 @@
 name: golang-postgresql
 version: 0.0.2
-inherits: wercker/ubuntu12.04-webessentials@1.0.4
+inherits: wercker/ubuntu12.04-chef10.18.2@0.0.8
 type: main
 platform: ubuntu@12.04
 description: A box for development with postgres and Go 1.4
@@ -23,11 +23,11 @@ script: |
 
         echo "deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main" | sudo tee -a /etc/apt/sources.list.d/pgdg.list
         wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+        sudo apt-add-repository ppa:ansible/ansible
         sudo apt-get update
-        sudo apt-get install git
-        sudo apt-get install mercurial
-        sudo apt-get install bzr
-        sudo apt-get install postgresql-9.4
+        sudo apt-get install software-properties-common
+        sudo apt-get install ansible
+        
         wget https://storage.googleapis.com/golang/go1.4.1.linux-amd64.tar.gz
         sudo tar -C /usr/local -xzf go1.4.1.linux-amd64.tar.gz
         echo "export PATH:$PATH:/usr/local/go/bin" | sudo tee -a /etc/profile
@@ -37,10 +37,11 @@ script: |
         export GOPATH=$HOME/go
         echo "export GOPATH=$HOME/go" | sudo tee -a /etc/profile
 
+		sudo ansible-playbook -v provisioning/playbook.yml -i provisioning/inventory.ini -c local
+		
         # Add GOBIN to Path
         export PATH="$PATH:$GOPATH/bin"
         echo 'export PATH="$PATH:$GOPATH/bin"' | sudo tee -a /etc/profile
-         sudo -H -u postgres  bash -c "psql -t template1 -c \"alter user postgres with password 'wercker'\""
         echo "PGPASSWORD=wercker" | sudo tee -a /etc/profile
 
 box-detect:
