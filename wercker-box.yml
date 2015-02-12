@@ -1,8 +1,9 @@
 name: golang-postgresql
 version: 0.0.1
+inherits: wercker/ubuntu12.04-webessentials@1.0.4
 type: main
 platform: ubuntu@12.04
-description: A box for development with postgres anf Go 1.4
+description: A box for development with postgres and Go 1.4
 keywords:
         - golang
         - go
@@ -15,7 +16,6 @@ packages:
         - postgresql
 script: |
         # Setup dev enviroment
-        sudo apt-get install wget
 
         echo "deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main" | sudo tee -a /etc/apt/sources.list.d/pgdg.list
         wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
