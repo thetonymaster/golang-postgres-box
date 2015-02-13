@@ -12,8 +12,13 @@
         - git
         - bzr
         - mercurial
-        - postgresql
+        - postgresql-9.4
         - python-psycopg2
+
+  - name: change postgresql default mode
+    template: src=templates/pg_hba.conf.j2 dest=/etc/postgresql/9.4/main/pg_hba.conf owner=postgres group=postgres mode=0644
+  - name: restart
+    service: name=postgresql state=reloaded
 
 - hosts: localhost
   sudo: yes
